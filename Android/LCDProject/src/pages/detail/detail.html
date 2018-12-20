@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ peripheral.name || 'Device' }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-list>
+    <ion-list-header>
+      Mode 1
+    </ion-list-header>
+    <ion-item>
+      <div class="list">
+        <label class="item item-input">
+          <input id="BinToLCD" type="text" placeholder="Binary to LCD" readonly />
+        </label>
+      </div>
+    </ion-item>
+
+    <ion-list-header>
+      Mode 2
+    </ion-list-header>
+    <ion-item>
+      <div class="list">
+        <label class="item item-input">
+          <input id="ASCIIToBIN" type="text" placeholder="ASCII to binary" maxlength="1" />
+      </div>
+    </ion-item>
+
+    <ion-list-header>
+      Mode 3
+    </ion-list-header>
+    <script src="../../lib/justgage.js"></script>
+    <script src="../../lib/raphael-2.1.4.min.js"></script>
+    <script src="../../lib/myscript.js"></script>
+
+    <ion-list-header>
+      Mode 4
+    </ion-list-header>
+    <ion-item>
+      <div id="temperature" style ="width:200px; height:200px"></div>
+      <div id="humiduti" style = "width:200px; height:200px"></div>
+    </ion-item>
+
+    <ion-lish-header>
+      Mode 5
+    </ion-lish-header>
+    <ion-item>
+      <ion-label>Relay 1</ion-label>
+      <ion-toggle [(ngModel)]="power1" (ionChange)="onPowerSwitchChange1($event);"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Relay 2</ion-label>
+      <ion-toggle [(ngModel)]="power2" (ionChange)="onPowerSwitchChange2($event);"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-badge item-end color="secondary">{{DC1}}</ion-badge>
+      <ion-range max="255" debounce="30" [(ngModel)]="DC1" (ionChange)="setDC1($event)"> 
+        <ion-icon range-left small name="sunny"></ion-icon>
+        <ion-icon range-right name="sunny"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item>
+      <ion-badge item-end color="secondary">{{DC2}}</ion-badge>
+      <ion-range max="255" debounce="30" [(ngModel)]="DC2" (ionChange)="setDC2($event)">
+        <ion-icon range-left small name="sunny"></ion-icon>
+        <ion-icon range-right name="sunny"></ion-icon>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <p>{{ statusMessage }}</p>
+  </ion-toolbar>
+</ion-footer>
